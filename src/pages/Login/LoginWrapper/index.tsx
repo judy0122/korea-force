@@ -11,7 +11,7 @@ import {
   useIsSavePassword,
 } from "../Provider";
 
-const LoginWrapper = () => {
+export default function LoginWrapper() {
   const input = useInput();
   const isSaveId = useIsSaveId();
   const isSavePassword = useIsSavePassword();
@@ -69,7 +69,7 @@ const LoginWrapper = () => {
                 checked={isSaveId}
                 onChange={onChangeIsSaveId}
               />
-              <label for="idchk">아이디 저장</label>
+              <label htmlFor="idchk">아이디 저장</label>
             </div>
             <div className="chk_list">
               <input
@@ -78,7 +78,7 @@ const LoginWrapper = () => {
                 id="passwordchk"
                 onChange={onChangeIsSavePassword}
               />
-              <label for="passwordchk">패스워드 저장</label>
+              <label htmlFor="passwordchk">패스워드 저장</label>
             </div>
           </div>
           <button className="find_idpw" onClick={onClickFindInfo}>
@@ -88,6 +88,4 @@ const LoginWrapper = () => {
       </div>
     </>
   );
-};
-
-export default LoginWrapper;
+}

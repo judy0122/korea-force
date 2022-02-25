@@ -1,5 +1,8 @@
 import constate from "constate";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthApi } from "src/services/auth";
+import { STORAGE_AUTO_LOGIN, STORAGE_TOKEN_KEY } from "src/configs";
 
 function useLogin() {
   const [input, setInput] = useState({
@@ -8,6 +11,7 @@ function useLogin() {
   });
   const [isSaveId, setIsSaveId] = useState(false);
   const [isSavePassword, setIsSavePassword] = useState(false);
+  const navigate = useNavigate();
 
   const onChangeIdValue = (e) => {
     const { value } = e.target;
@@ -26,8 +30,30 @@ function useLogin() {
   };
 
   // 로그인 버튼 클릭시
-  const onClickLogin = () => {
-    console.log("로그인");
+  const onClickLogin = async () => {
+    try {
+      if (input.id.length === 0) {
+        alert("아이디를 입력해주세요.");
+        return;
+      }
+      if (input.password.length === 0) {
+        alert("비밀번호를 입력해주세요.");
+        return;
+      }
+      const { data } = await AuthApi.login(input);
+      const token = data.data.auth_token;
+      localStorage.setItem(STORAGE_TOKEN_KEY, token);
+      if (isSaveId && isSavePassword) {
+        localStorage.setItem(STORAGE_AUTO_LOGIN, true);
+      } else {
+        localStorage.removeItem(STORAGE_AUTO_LOGIN);
+      }
+      console.log(data.data);
+      navigate("/main");
+    } catch (error) {
+      const { data } = error.response;
+      alert(data.message);
+    }
   };
 
   // 아이디저장

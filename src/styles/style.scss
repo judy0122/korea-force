@@ -169,6 +169,9 @@
 
   .tab li {
     color: #fff;
+    button {
+      display: block;
+    }
   }
 
   .top_controll .right_controll {
@@ -1815,7 +1818,11 @@
         margin-left: 5px;
         border-radius: 8px;
         color: #fff;
-
+        padding: 0;
+        button {
+          width: 100%;
+          height: 100%;
+        }
         span {
           display: none;
         }
@@ -1837,7 +1844,17 @@
       border-radius: 7px;
       margin-top: 10px;
     }
-
+    li {
+      padding: 0;
+      button {
+        width: 100%;
+        height: 100%;
+        padding: 0 20px;
+      }
+      & + li {
+        margin-left: 5px;
+      }
+    }
     .order_tab {
       padding: 20px 10px;
 
