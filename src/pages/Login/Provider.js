@@ -1,7 +1,7 @@
 import constate from "constate";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthApi } from "src/services/auth";
+import { AuthService } from "src/services/auth";
 import { STORAGE_AUTO_LOGIN, STORAGE_TOKEN_KEY } from "src/configs";
 
 function useLogin() {
@@ -40,7 +40,7 @@ function useLogin() {
         alert("비밀번호를 입력해주세요.");
         return;
       }
-      const { data } = await AuthApi.login(input);
+      const { data } = await AuthService.login(input);
       const token = data.data.auth_token;
       localStorage.setItem(STORAGE_TOKEN_KEY, token);
       if (isSaveId && isSavePassword) {
@@ -48,7 +48,6 @@ function useLogin() {
       } else {
         localStorage.removeItem(STORAGE_AUTO_LOGIN);
       }
-      console.log(data.data);
       navigate("/main");
     } catch (error) {
       const { data } = error.response;

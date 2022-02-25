@@ -1,20 +1,20 @@
 import { useIsmain } from "../Provider";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
+import { useStatus } from "src/pages/Main/Provider";
+import { statusTitle } from "../values";
+dayjs.locale("ko");
 
 export default function Control() {
   const ismain = useIsmain();
-  dayjs.locale("ko");
+  const status = useStatus();
 
   return (
     <div className="right_controll">
       {ismain && (
         <>
           <div className="store_info">
-            {/* <em className="ing" style="display:none;">
-          영업중
-        </em> */}
-            <em className="stop">영업 임시중지 중</em>
+            <em className={status.toLowerCase()}>{statusTitle[status]}</em>
             <span>{dayjs().format("MM.DD(dd)")}</span>
             <strong>
               {dayjs().format("HH")}

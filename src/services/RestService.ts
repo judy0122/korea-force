@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
-import { baseURL } from "../configs";
-import TokenService from "../token";
+import { baseURL } from "./configs";
+import TokenService from "./token";
 
 class RestApi {
   getRequestConfig = async (isSecureRequest: boolean, customConfig?: any) => {
@@ -15,14 +15,19 @@ class RestApi {
       if (accessToken) {
         config = {
           baseURL: `${baseURL}`,
-          headers: { Authorization: `Bearer ${accessToken}` },
+          headers: {
+            Authorization: `${accessToken}`,
+            withCredentials: true,
+            "Cache-Control": "no-cache",
+            "Access-Control-Allow-Origin": "*",
+          },
         };
       }
     }
     return config;
   };
 
-  get = async (url: string, data: any) => {
+  get = async (url: string, data?: any) => {
     const config = await this.getRequestConfig(true, {
       data,
     });

@@ -1,10 +1,8 @@
+//subtab 정렬
 export type OrderType = "recent" | "order";
 
-export type LoginResponse = {
-  auth_token: string;
-  biz_acc_cd: string;
-  biz_name: string;
-  shop_cd: string;
-};
-
+//배달
 export type DeliveryType = "agent" | "self";
+
+//영업상태
+export type StatusType = "ING" | "TEMPSTOP";
