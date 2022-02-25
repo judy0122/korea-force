@@ -1,10 +1,10 @@
 import RestService from "../RestService";
 
-export const ManageService = {
-  // 영업상태 조회하기
-  async getStatus() {
+export const SettingService = {
+  //매장리스트조회
+  async getShop() {
     try {
-      const url = "/v1/manage/status";
+      const url = "/v1/settings/shop";
       const { data } = await RestService.get(url);
       return data.data;
     } catch (error) {

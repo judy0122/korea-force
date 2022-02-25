@@ -1,6 +1,6 @@
 import constate from "constate";
 import { useEffect, useState } from "react";
-import { ManageService } from "src/services/manage";
+import { ManageService } from "src/services";
 import { OrderType, StatusType } from "src/types/common";
 
 function useMain() {
@@ -21,22 +21,17 @@ function useMain() {
     setOrderType(type);
   };
 
-  const getUserInfo = async () => {
-    try {
-      const { data } = await ManageService.getStatus();
-      const { istmpstop } = data.data;
-      if (istmpstop === 1) {
-        setStatus("TEMPSTOP");
-      } else {
-        setStatus("ING");
-      }
-    } catch (error) {
-      return Promise.reject(error);
+  const getShopStatus = async () => {
+    const { istmpstop } = await ManageService.getStatus();
+    if (istmpstop === 1) {
+      setStatus("TEMPSTOP");
+    } else {
+      setStatus("ING");
     }
   };
 
   useEffect(() => {
-    getUserInfo();
+    getShopStatus();
   }, []);
 
   return {
