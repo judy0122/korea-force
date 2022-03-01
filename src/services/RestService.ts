@@ -5,7 +5,6 @@ import TokenService from "./token";
 class RestApi {
   getRequestConfig = async (isSecureRequest: boolean, customConfig?: any) => {
     let config: AxiosRequestConfig = {};
-
     if (customConfig) {
       config = Object.assign(config, customConfig);
     }
@@ -28,9 +27,12 @@ class RestApi {
   };
 
   get = async (url: string, data?: any) => {
-    const config = await this.getRequestConfig(true, {
-      data,
-    });
+    const config = await this.getRequestConfig(
+      true,
+      data && {
+        data,
+      }
+    );
     return axios.get(url, config);
   };
 

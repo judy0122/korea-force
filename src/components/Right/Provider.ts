@@ -1,21 +1,13 @@
 import constate from "constate";
 import { useState } from "react";
+import { OrderService } from "src/services";
 import { DeliveryType } from "src/types/common";
+import { OptionType, OrderMenusType, OrderType } from "src/types/order";
 
 function useRight() {
-  const [deliveryType, setDeliveryType] = useState<DeliveryType>("agent");
-
-  const onChangeDeliveryType = (type: DeliveryType) => {
-    setDeliveryType(type);
-  };
-
-  return { deliveryType, onChangeDeliveryType };
+  return {};
 }
 
-const [Provider, useDeliveryType, useChangeDeliveryType] = constate(
-  useRight,
-  (value) => value.deliveryType,
-  (value) => value.onChangeDeliveryType
-);
+const [RightProvider] = constate(useRight);
 
-export { Provider, useDeliveryType, useChangeDeliveryType };
+export { RightProvider };

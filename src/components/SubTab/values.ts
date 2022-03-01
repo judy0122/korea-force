@@ -1,9 +1,9 @@
-import { OrderType } from "src/types/common";
+import { SortType } from "src/types/common";
 
 const deliverys: string[] = ["대기", "처리중", "배달", "완료"];
-const orders: {
+const sorts: {
   title: string;
-  value: OrderType;
+  value: SortType;
 }[] = [
   {
     title: "최근순",
@@ -15,4 +15,4 @@ const orders: {
   },
 ];
 
-export { deliverys, orders };
+export { deliverys, sorts };

@@ -1,6 +1,6 @@
-import { DeliveryType } from "src/types/common";
+import { DeliveryMethodsType } from "src/types/order";
 
-export const deliverys: { title: string; value: DeliveryType }[] = [
+export const deliveryMethods: DeliveryMethodsType[] = [
   { value: "agent", title: "배달대행사" },
   { value: "self", title: "자체배달" },
 ];

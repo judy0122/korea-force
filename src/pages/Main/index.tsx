@@ -1,11 +1,5 @@
-import {
-  Header,
-  Tab,
-  DeliveryTab,
-  DeliveryContents,
-  NewOrder,
-  Right,
-} from "src/components";
+import { Header, Right, Left, Bottom } from "src/components";
+import { BottomProvider } from "src/components/Bottom/Provider";
 import { Provider } from "./Provider";
 
 export default function Main() {
@@ -13,15 +7,13 @@ export default function Main() {
     <Provider>
       <Header />
       <div className="order_info_cont">
-        <div className="left_tab">
-          <Tab />
-          <div className="order_info">
-            <DeliveryTab />
-            <DeliveryContents />
-          </div>
-        </div>
+        <Left />
         <Right />
-        <NewOrder />
+        <BottomProvider>
+          <Bottom />
+        </BottomProvider>
+        {/* popup */}
+        {/* <NewOrder /> */}
       </div>
     </Provider>
   );
