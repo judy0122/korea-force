@@ -1,14 +1,8 @@
-import {
-  useChangeTabIndex,
-  useCounts,
-  useTabIndex,
-} from "src/pages/Main/Provider";
+import useTab from "./useTab";
 import { tabs } from "./values";
 
 export default function Tab() {
-  const tabIndex = useTabIndex();
-  const onChangeTabIndex = useChangeTabIndex();
-  const counts = useCounts();
+  const { tabIndex, onChangeTabIndex } = useTab();
 
   //TODO 주문현황 숫자 받아오는거 물어보기
 

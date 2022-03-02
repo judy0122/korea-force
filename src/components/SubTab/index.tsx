@@ -1,16 +1,9 @@
-import {
-  useChangeDeliveryTabIndex,
-  useChangeSortType,
-  useDeliverytabIndex,
-  useSortType,
-} from "src/pages/Main/Provider";
+import useTab from "../Tab/useTab";
 import { deliverys, sorts } from "./values";
 
 export default function DeliveryTab() {
-  const deliveryTabIndex = useDeliverytabIndex();
-  const sortType = useSortType();
-  const onChangeSortType = useChangeSortType();
-  const onChangeDeliveryTabIndex = useChangeDeliveryTabIndex();
+  const { subTabIndex, sortType, onChangeSortType, onChangeDeliveryTabIndex } =
+    useTab();
 
   return (
     <div className="order_tab">
@@ -18,9 +11,7 @@ export default function DeliveryTab() {
         {deliverys.map((delivery, index) => (
           <li
             key={index}
-            className={
-              deliveryTabIndex === index ? "btn ms blue" : "btn ms default"
-            }
+            className={subTabIndex === index ? "btn ms blue" : "btn ms default"}
           >
             <button onClick={() => onChangeDeliveryTabIndex(index)}>
               {delivery} <span>0</span>

@@ -1,21 +1,23 @@
 import { useState } from "react";
-import { useModifyMsg, useToggleIsShowMsg } from "src/pages/Main/Provider";
 import CommonPopup from "../CommonPopup";
+import useModifyMsg from "./useModifyMsg";
 
 interface ModifyMsgPopupProps {
   requestmsg?: string;
   deliverymsg?: string;
+  msg?: string;
   onClose: () => void;
 }
 
 export default function ModifyMsgPopup({
   requestmsg,
   deliverymsg,
+  msg,
   onClose,
 }: ModifyMsgPopupProps) {
-  const [newMsg, setNewMsg] = useState<string>("");
-  const onToggleIsShowMsg = useToggleIsShowMsg();
-  const onModifyMsg = useModifyMsg();
+  const [newMsg, setNewMsg] = useState<string>(msg || "");
+
+  const { onToggleIsShow, onModifyMsg } = useModifyMsg();
 
   const handleChangeNewMsg = (e: any) => {
     setNewMsg(e.target.value);
@@ -27,7 +29,7 @@ export default function ModifyMsgPopup({
   };
 
   return (
-    <CommonPopup title="요청사항 수정" onClose={onToggleIsShowMsg}>
+    <CommonPopup title="요청사항 수정" onClose={onToggleIsShow}>
       <div className="con">
         <dl className="tit_con_style">
           <dt>고객요청</dt>

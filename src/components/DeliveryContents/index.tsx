@@ -1,14 +1,8 @@
 import { OrdersType } from "src/types/order";
-import {
-  useList,
-  useSelectedOrder,
-  useChangeSelectedOrder,
-} from "src/pages/Main/Provider";
+import useDeliveryContents from "./useDeliveryContents";
 
 export default function DeliveryContents() {
-  const list = useList();
-  const selectedOrder = useSelectedOrder();
-  const onChangeSelectedOrder = useChangeSelectedOrder();
+  const { list, selectedOrder, onChangeSelectedOrder } = useDeliveryContents();
 
   return (
     <div className="tb_type1 info_tb">

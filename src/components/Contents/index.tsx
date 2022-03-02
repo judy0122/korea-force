@@ -1,8 +1,8 @@
-import { useTabIndex } from "src/pages/Main/Provider";
 import DeliveryContents from "../DeliveryContents";
+import useTab from "../Tab/useTab";
 
 export default function Contents() {
-  const tabIndex = useTabIndex();
+  const { tabIndex } = useTab();
 
   const rednerContents = () => {
     switch (tabIndex) {

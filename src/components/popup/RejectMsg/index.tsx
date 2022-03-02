@@ -1,25 +1,18 @@
-import {
-  useRejectMsg,
-  useSelectRejectMsg,
-  useToggleIsShowRejectComplete,
-} from "src/components/Bottom/Provider";
 import { rejectMsgs } from "src/components/Bottom/values";
-import { useRejectOrder } from "src/pages/Main/Provider";
 import CommonPopup from "../CommonPopup";
+import useRejectMsg from "./useRejectMsg";
 
 export interface IRejectMsgPopupProps {
   onClose: () => void;
 }
 
 export default function RejectMsgPopup({ onClose }: IRejectMsgPopupProps) {
-  const rejectMsg = useRejectMsg();
-  const onRejectOrder = useRejectOrder();
-  const onSelectRejectMsg = useSelectRejectMsg();
-  const onToggleIsShowRejectComplete = useToggleIsShowRejectComplete();
+  const { message, onSelectMessage, onToggleIsShow, onRejectOrder } =
+    useRejectMsg();
 
   const handleRejectOrder = async () => {
-    await onRejectOrder(rejectMsg);
-    onToggleIsShowRejectComplete();
+    await onRejectOrder(message);
+    onToggleIsShow();
     onClose();
   };
 
@@ -33,8 +26,8 @@ export default function RejectMsgPopup({ onClose }: IRejectMsgPopupProps) {
             {rejectMsgs.map((msg: any, index: number) => (
               <li
                 key={index}
-                onClick={() => onSelectRejectMsg(msg)}
-                className={msg === rejectMsg ? "on" : ""}
+                onClick={() => onSelectMessage(msg)}
+                className={msg === message ? "on" : ""}
               >
                 {msg}
               </li>

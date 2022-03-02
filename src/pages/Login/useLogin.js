@@ -1,10 +1,11 @@
-import constate from "constate";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthService } from "src/services/auth";
-import { STORAGE_AUTO_LOGIN, STORAGE_TOKEN_KEY } from "src/configs";
+import { STORAGE_TOKEN_KEY } from "src/configs";
+import { useDispatch } from "react-redux";
+import userSlice from "src/store/module/user/userSlice";
 
-function useLogin() {
+export default function useLogin() {
   const [input, setInput] = useState({
     id: "",
     password: "",
@@ -12,6 +13,7 @@ function useLogin() {
   const [isSaveId, setIsSaveId] = useState(false);
   const [isSavePassword, setIsSavePassword] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onChangeIdValue = (e) => {
     const { value } = e.target;
@@ -41,13 +43,15 @@ function useLogin() {
         return;
       }
       const { data } = await AuthService.login(input);
+      console.log(data);
       const token = data.data.auth_token;
       localStorage.setItem(STORAGE_TOKEN_KEY, token);
       if (isSaveId && isSavePassword) {
-        localStorage.setItem(STORAGE_AUTO_LOGIN, true);
+        dispatch(userSlice.actions.onChangeIsLogin(true));
       } else {
-        localStorage.removeItem(STORAGE_AUTO_LOGIN);
+        dispatch(userSlice.actions.onChangeIsLogin(false));
       }
+      dispatch(userSlice.actions.onChangeUser(data.data));
       navigate("/main");
     } catch (error) {
       const { data } = error.response;
@@ -84,40 +88,3 @@ function useLogin() {
     onClickFindInfo,
   };
 }
-
-const [
-  Provider,
-  useInput,
-  useIsSaveId,
-  useIsSavePassword,
-  useChangeIdValue,
-  useChangePasswordValue,
-  useClickLogin,
-  useChangeIsSaveId,
-  useChangeIsSavePassword,
-  useClickFindInfo,
-] = constate(
-  useLogin,
-  (value) => value.input,
-  (value) => value.isSaveId,
-  (value) => value.isSavePassword,
-  (value) => value.onChangeIdValue,
-  (value) => value.onChangePasswordValue,
-  (value) => value.onClickLogin,
-  (value) => value.onChangeIsSaveId,
-  (value) => value.onChangeIsSavePassword,
-  (value) => value.onClickFindInfo
-);
-
-export {
-  Provider,
-  useInput,
-  useIsSaveId,
-  useIsSavePassword,
-  useChangeIdValue,
-  useChangePasswordValue,
-  useClickLogin,
-  useChangeIsSaveId,
-  useChangeIsSavePassword,
-  useClickFindInfo,
-};

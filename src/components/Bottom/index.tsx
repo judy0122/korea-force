@@ -1,29 +1,19 @@
-import {
-  useChangeSelectedOrder,
-  useList,
-  useSelectedOrder,
-} from "src/pages/Main/Provider";
 import { DeliveryTimePopup, RejectMsgPopup } from "../popup";
 import RejectCompletePopup from "../popup/RejectComplete";
-import {
-  useIsShowDeliveryTime,
-  useIsShowRejectComplete,
-  useIsShowRejectMsg,
-  useToggleIsShowDeliveryTime,
-  useToggleIsShowRejectComplete,
-  useToggleIsShowRejectMsg,
-} from "./Provider";
+import useBottom from "./useBottom";
 
 export default function Bottom() {
-  const list = useList();
-  const selectedOrder = useSelectedOrder();
-  const isShowRejectMsg = useIsShowRejectMsg();
-  const isShowRejectComplete = useIsShowRejectComplete();
-  const isShowDeliveryTime = useIsShowDeliveryTime();
-  const onChangeSelectedOrder = useChangeSelectedOrder();
-  const onToggleIsShowRejectComplete = useToggleIsShowRejectComplete();
-  const onToggleIsShowDeliveryTime = useToggleIsShowDeliveryTime();
-  const onToggleIsShowRejectMsg = useToggleIsShowRejectMsg();
+  const {
+    list,
+    selectedOrder,
+    onChangeSelectedOrder,
+    isShowRejectMsg,
+    isShowRejectComplete,
+    isShowDeliveryTime,
+    onToggleIsShowRejectMsg,
+    onToggleIsShowDeliveryTime,
+    onToggleIsShowRejectComplete,
+  } = useBottom();
 
   return (
     <>

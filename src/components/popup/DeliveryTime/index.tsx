@@ -1,10 +1,6 @@
-import {
-  useDeliveryTime,
-  useSelectDeliveryTime,
-} from "src/components/Bottom/Provider";
 import { deliveryTimes } from "src/components/Bottom/values";
-import { useAcceptOrder } from "src/pages/Main/Provider";
 import CommonPopup from "../CommonPopup";
+import useDeliveryTime from "./useDeliveryTime";
 
 export interface IDeliveryTimePopupProps {
   onClose: () => void;
@@ -13,12 +9,10 @@ export interface IDeliveryTimePopupProps {
 export default function DeliveryTimePopup({
   onClose,
 }: IDeliveryTimePopupProps) {
-  const onAcceptOrder = useAcceptOrder();
-  const deliveryTime = useDeliveryTime();
-  const onSelectDeliveryTime = useSelectDeliveryTime();
+  const { time, onSelectTime, onAcceptOrder } = useDeliveryTime();
 
   const handleConfirm = async () => {
-    await onAcceptOrder(deliveryTime);
+    await onAcceptOrder(time);
     onClose();
   };
 
@@ -29,13 +23,13 @@ export default function DeliveryTimePopup({
 
         <div className="choice_list length3">
           <ul>
-            {deliveryTimes.map((time: any, index) => (
+            {deliveryTimes.map((item: any, index) => (
               <li
                 key={index}
-                onClick={() => onSelectDeliveryTime(time)}
-                className={deliveryTime === time ? "on" : ""}
+                onClick={() => onSelectTime(time)}
+                className={time === item ? "on" : ""}
               >
-                {time}
+                {item}
               </li>
             ))}
           </ul>

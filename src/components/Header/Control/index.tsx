@@ -1,20 +1,18 @@
-import { useIsmain } from "../Provider";
+import useHeader from "../useHeader";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
-import { useStatus } from "src/pages/Main/Provider";
 import { statusTitle } from "../values";
 dayjs.locale("ko");
 
 export default function Control() {
-  const ismain = useIsmain();
-  const status = useStatus();
+  const { ismain, status } = useHeader();
 
   return (
     <div className="right_controll">
       {ismain && (
         <>
           <div className="store_info">
-            <em className={status.toLowerCase()}>{statusTitle[status]}</em>
+            <em className={status?.toLowerCase()}>{statusTitle[status]}</em>
             <span>{dayjs().format("MM.DD(dd)")}</span>
             <strong>
               {dayjs().format("HH")}

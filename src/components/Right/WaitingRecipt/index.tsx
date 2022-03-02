@@ -1,12 +1,6 @@
 import numeral from "numeral";
+import useWaitingRecipt from "./useWaitingRecipt";
 import { ModifyMsgPopup } from "src/components/popup";
-import {
-  useGetMenuAmount,
-  useGetMenuCount,
-  useGetMenuAllAmount,
-  useIsShowMsg,
-  useToggleIsShowMsg,
-} from "src/pages/Main/Provider";
 import { OrderMenusType, OrderType } from "src/types/order";
 
 export interface IWaitingReciptProps {
@@ -14,11 +8,13 @@ export interface IWaitingReciptProps {
 }
 
 export function WaitingRecipt({ order }: IWaitingReciptProps) {
-  const getMenuAmount = useGetMenuAmount();
-  const getMenuCount = useGetMenuCount();
-  const getMenuAllAmount = useGetMenuAllAmount();
-  const isShowMsg = useIsShowMsg();
-  const onToggleIsShowMsg = useToggleIsShowMsg();
+  const {
+    isShowMsg,
+    getMenuAmount,
+    getMenuCount,
+    getMenuAllAmount,
+    onToggleIsShowMsg,
+  } = useWaitingRecipt();
 
   return (
     <>
@@ -202,6 +198,7 @@ export function WaitingRecipt({ order }: IWaitingReciptProps) {
         <ModifyMsgPopup
           requestmsg={order?.order_reqmsg}
           deliverymsg={order?.order_delivmsg}
+          msg={order.additional_msg}
           onClose={onToggleIsShowMsg}
         />
       )}
