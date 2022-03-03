@@ -18,4 +18,4 @@ export type OrderDeliveryType = {
   NONE: 9; // "미선택";
 };
 
-export type ListType = "standby" | "ing";
+export type OrderStatusType = "standby" | "ing" | "complete";

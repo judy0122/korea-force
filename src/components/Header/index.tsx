@@ -2,7 +2,7 @@ import Control from "./Control";
 import useHeader from "./useHeader";
 
 export default function Header() {
-  const { shopname, ismain } = useHeader();
+  const { shopname, ismain, status } = useHeader();
 
   return (
     <div className="korea_wrap">
@@ -21,7 +21,7 @@ export default function Header() {
             {ismain && <span>{shopname}</span>}
           </h1>
         </div>
-        <Control />
+        <Control isMain={ismain} status={status} />
       </div>
     </div>
   );

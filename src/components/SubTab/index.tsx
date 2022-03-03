@@ -1,20 +1,26 @@
-import useTab from "../Tab/useTab";
+import useSubTab from "./useSubTab";
+import { DeliveryTabType } from "src/types/order";
 import { deliverys, sorts } from "./values";
 
 export default function DeliveryTab() {
-  const { subTabIndex, sortType, onChangeSortType, onChangeDeliveryTabIndex } =
-    useTab();
+  const {
+    counts,
+    subTabIndex,
+    sortType,
+    onChangeSortType,
+    onChangeDeliveryTabIndex,
+  } = useSubTab();
 
   return (
     <div className="order_tab">
       <ul className="left_progress tab_type2">
-        {deliverys.map((delivery, index) => (
+        {deliverys.map(({ name, value }: DeliveryTabType, index) => (
           <li
             key={index}
             className={subTabIndex === index ? "btn ms blue" : "btn ms default"}
           >
-            <button onClick={() => onChangeDeliveryTabIndex(index)}>
-              {delivery} <span>0</span>
+            <button onClick={() => onChangeDeliveryTabIndex(index, value)}>
+              {name} <span>{counts[index]}</span>
             </button>
           </li>
         ))}

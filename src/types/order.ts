@@ -1,3 +1,4 @@
+import { OrderStatusType } from "./api";
 import { DeliveryType } from "./common";
 
 export type DeliveryMethodsType = { title: string; value: DeliveryType };
@@ -129,3 +130,9 @@ export type DeliveryTimeType =
   | "60분"
   | "90분"
   | "120분";
+
+export type TabType = { name: string; value: number; type: TabOrderType };
+
+export type TabOrderType = "DELIVERY" | "TAKEOUT" | "TABLE" | "WHOLE" | "SALES";
+
+export type DeliveryTabType = { name: string; value: OrderStatusType | null };

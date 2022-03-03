@@ -2707,6 +2707,7 @@ hr.bar {
       tr {
         &:first-child td {
           border-top: 0;
+          word-break: break-all;
         }
 
         &:last-child td {

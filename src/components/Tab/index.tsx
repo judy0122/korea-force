@@ -1,3 +1,4 @@
+import { TabType } from "src/types/order";
 import useTab from "./useTab";
 import { tabs } from "./values";
 
@@ -9,13 +10,13 @@ export default function Tab() {
   return (
     <div className="tab tab_type1">
       <ul>
-        {tabs.map((tab, index) => (
+        {tabs.map(({ name, value, type }: TabType, index) => (
           <li
             key={index}
-            className={index === tabIndex ? "btn m blue" : "btn m lightgray"}
+            className={value === tabIndex ? "btn m blue" : "btn m lightgray"}
           >
-            <button onClick={() => onChangeTabIndex(index)}>
-              {tab} <span className="round_red">2</span>
+            <button onClick={() => onChangeTabIndex(value, type)}>
+              {name} <span className="round_red">2</span>
             </button>
           </li>
         ))}

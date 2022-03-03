@@ -3,8 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   modifyMsg: false,
   rejectMsg: false,
-  rejectComplete: false,
   deliveryTime: false,
+  cancelReason: false,
+  soldout: false,
+  simple: { isShow: false, title: "" },
 };
 
 const popup = createSlice({

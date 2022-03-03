@@ -1,12 +1,12 @@
 import DeliveryContents from "../DeliveryContents";
-import useTab from "../Tab/useTab";
+import useContents from "./useContents";
 
 export default function Contents() {
-  const { tabIndex } = useTab();
+  const { tabType } = useContents();
 
   const rednerContents = () => {
-    switch (tabIndex) {
-      case 0:
+    switch (tabType) {
+      case "DELIVERY":
         return <DeliveryContents />;
 
       default:

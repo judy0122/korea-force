@@ -8,7 +8,6 @@ export default function Redirect() {
   const userState = useSelector((state: RootState) => state.user);
 
   useEffect(() => {
-    console.log(userState.isLogged);
     if (userState.isLogged) {
       navigate("/main");
     } else {

@@ -1,23 +1,13 @@
-import { rejectMsgs } from "src/components/Bottom/values";
+import { rejectMsgs } from "src/components/popup/values";
 import CommonPopup from "../CommonPopup";
 import useRejectMsg from "./useRejectMsg";
 
-export interface IRejectMsgPopupProps {
-  onClose: () => void;
-}
-
-export default function RejectMsgPopup({ onClose }: IRejectMsgPopupProps) {
+export default function RejectMsgPopup() {
   const { message, onSelectMessage, onToggleIsShow, onRejectOrder } =
     useRejectMsg();
 
-  const handleRejectOrder = async () => {
-    await onRejectOrder(message);
-    onToggleIsShow();
-    onClose();
-  };
-
   return (
-    <CommonPopup size="m" title="주문거절" onClose={onClose}>
+    <CommonPopup size="m" title="주문거절" onClose={onToggleIsShow}>
       <div className="con">
         <p className="txt s">주문거절 사유를 선택해 주세요..</p>
 
@@ -36,10 +26,10 @@ export default function RejectMsgPopup({ onClose }: IRejectMsgPopupProps) {
         </div>
 
         <div className="btn_area">
-          <a href="#;" className="btn m default close" onClick={onClose}>
+          <a href="#;" className="btn m default close" onClick={onToggleIsShow}>
             취소
           </a>
-          <a href="#;" className="btn m gray" onClick={handleRejectOrder}>
+          <a href="#;" className="btn m gray" onClick={onRejectOrder}>
             확인
           </a>
         </div>

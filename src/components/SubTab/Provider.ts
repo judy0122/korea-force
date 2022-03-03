@@ -1,3 +1,0 @@
-function useSubTab() {
-  const onChangeTab = () => {};
-}

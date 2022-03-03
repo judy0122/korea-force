@@ -43,7 +43,6 @@ export default function useLogin() {
         return;
       }
       const { data } = await AuthService.login(input);
-      console.log(data);
       const token = data.data.auth_token;
       localStorage.setItem(STORAGE_TOKEN_KEY, token);
       if (isSaveId && isSavePassword) {

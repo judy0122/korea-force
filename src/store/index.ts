@@ -1,6 +1,5 @@
 import { combineReducers } from "redux";
 import storage from "redux-persist/lib/storage";
-import listSlice from "./module/list/listSlice";
 import logger from "redux-logger";
 import { persistReducer, persistStore } from "redux-persist";
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
@@ -10,7 +9,6 @@ import tabSlice from "./module/tab/tabSlice";
 import popupSlice from "./module/popup/popupSlice";
 
 const rootReducer = combineReducers({
-  list: listSlice.reducer,
   user: userSlice.reducer,
   order: orderSlice.reducer,
   tab: tabSlice.reducer,

@@ -1,6 +1,12 @@
 import { SortType } from "src/types/common";
+import { DeliveryTabType } from "src/types/order";
 
-const deliverys: string[] = ["대기", "처리중", "배달", "완료"];
+const deliverys: DeliveryTabType[] = [
+  { name: "대기", value: "standby" },
+  { name: "처리중", value: "ing" },
+  { name: "배달", value: null },
+  { name: "완료", value: "complete" },
+];
 const sorts: {
   title: string;
   value: SortType;

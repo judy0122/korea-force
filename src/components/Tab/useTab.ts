@@ -1,56 +1,60 @@
-import { useEffect, useState } from "react";
+import tabSlice from "src/store/module/tab/tabSlice";
+import { useEffect } from "react";
 import { OrderService } from "src/services";
 import { RootState } from "src/store";
 import { useSelector, useDispatch } from "react-redux";
-import tabSlice from "src/store/module/tab/tabSlice";
-import { SortType } from "src/types/common";
-
-const dummyData = [
-  {
-    order_status: "주문구분(1:주문대기,2:처리중, 3:완료)",
-    order_cnt: "주문횟수",
-  },
-];
+import { OrderStatusType } from "src/types/api";
+import orderSlice from "src/store/module/order/orderSlice";
 
 export default function useTab() {
-  const [counts, setCounts] = useState<number[]>([]);
   const dispatch = useDispatch();
-  const tabState = useSelector((state: RootState) => state.tab);
-  const [sortType, setSortType] = useState<SortType>("recent");
+  const { tabIndex, counts } = useSelector((state: RootState) => state.tab);
+  const { pageIndex } = useSelector((state: RootState) => state.order);
 
-  const getOrderCount = async () => {
-    const reponse = await OrderService.getCount(0);
-    //  TODO dummy data 만들어서 구현하기...
+  const getOrderCount = async (tabIndex: number) => {
+    const newCount = [0, 0, 0, 0];
+    const reponse = await OrderService.getCount(tabIndex);
+    reponse.map(({ order_status, order_cnt }: any) => {
+      if (order_status === "1") {
+        newCount[0] = order_cnt;
+      }
+      if (order_status === "2") {
+        newCount[1] = order_cnt;
+      }
+      if (order_status === "3") {
+        newCount[3] = order_cnt;
+      }
+    });
+    dispatch(tabSlice.actions.onChangeCount(newCount));
   };
 
-  const onChangeTabIndex = (index: number) => {
-    dispatch(tabSlice.actions.onChangeTabIndex(index));
-    // TODO 주문 정보 가져오기..
+  const onChangeTabIndex = (index: number, type: string) => {
+    dispatch(tabSlice.actions.onChangeTab({ tabIndex: index, tabType: type }));
   };
 
-  // 정렬 타입변경
-  const onChangeSortType = (type: SortType) => {
-    setSortType(type);
-  };
-
-  /*
-   * Sub Tab
-   */
-  const onChangeDeliveryTabIndex = (index: number) => {
-    dispatch(tabSlice.actions.onChangeSubTabIndex(index));
+  // 목록 조회
+  const getList = async (
+    type: number,
+    status: OrderStatusType,
+    isinit?: boolean
+  ) => {
+    const data = await OrderService.getList(type, pageIndex, status);
+    dispatch(orderSlice.actions.onChangeList(data || []));
+    if (isinit) {
+      dispatch(orderSlice.actions.onChangeSelectedOrder(0));
+    }
   };
 
   useEffect(() => {
-    getOrderCount();
-  }, []);
+    if (tabIndex !== -1) {
+      getList(tabIndex, "standby", true);
+      getOrderCount(tabIndex);
+    }
+  }, [tabIndex]);
 
   return {
     counts,
-    tabIndex: tabState.tabIndex,
-    subTabIndex: tabState.subTabIndex,
-    sortType,
+    tabIndex,
     onChangeTabIndex,
-    onChangeSortType,
-    onChangeDeliveryTabIndex,
   };
 }

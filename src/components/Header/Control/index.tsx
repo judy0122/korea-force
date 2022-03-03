@@ -1,15 +1,17 @@
-import useHeader from "../useHeader";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
+import { StatusType } from "src/types/common";
 import { statusTitle } from "../values";
 dayjs.locale("ko");
 
-export default function Control() {
-  const { ismain, status } = useHeader();
-
+interface ControlProps {
+  isMain: boolean;
+  status: StatusType;
+}
+export default function Control({ isMain, status }: ControlProps) {
   return (
     <div className="right_controll">
-      {ismain && (
+      {isMain && (
         <>
           <div className="store_info">
             <em className={status?.toLowerCase()}>{statusTitle[status]}</em>
@@ -23,7 +25,7 @@ export default function Control() {
         </>
       )}
       <div className="btn_box">
-        {ismain && (
+        {isMain && (
           <>
             <a href="#;" className="bell">
               <img src={require("@src/assets//btn_bell.png")} alt="알림" />

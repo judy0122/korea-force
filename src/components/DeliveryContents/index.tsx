@@ -1,3 +1,4 @@
+import numeral from "numeral";
 import { OrdersType } from "src/types/order";
 import useDeliveryContents from "./useDeliveryContents";
 
@@ -43,7 +44,7 @@ export default function DeliveryContents() {
             <col style={{ width: 80 }} />
           </colgroup>
           <tbody>
-            {list.length == 0 ? (
+            {list.length === 0 ? (
               <tr>
                 <td className="empty" colSpan={8}>
                   주문 내역이 없습니다.
@@ -58,6 +59,7 @@ export default function DeliveryContents() {
                     pay_method,
                     order_amount,
                     order_menus,
+                    order_status,
                   }: OrdersType,
                   index
                 ) => (
@@ -71,13 +73,13 @@ export default function DeliveryContents() {
                       <span className="ico style1">배민</span>
                     </td>
                     <td>{order_delivgb}</td>
-                    <td>{order_menus[0].menu_name}</td>
+                    <td>{order_menus.map(({ menu_name }) => menu_name)}</td>
                     <td>{pay_method}</td>
-                    <td>{order_amount}</td>
+                    <td>{numeral(order_amount).format("0,0")}</td>
                     <td>
                       <span className="blue">25</span>
                     </td>
-                    <td>처리중</td>
+                    <td>{order_status}</td>
                   </tr>
                 )
               )

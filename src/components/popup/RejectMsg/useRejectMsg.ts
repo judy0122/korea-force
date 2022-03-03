@@ -11,7 +11,7 @@ export default function useRejectMsg() {
   const { rejectMsg: isShow } = useSelector((state: RootState) => state.popup);
   const { order } = useSelector((state: RootState) => state.order);
 
-  // 주문 사유 선택
+  // 주문 거절 사유 선택
   const onSelectMessage = (reason: RejectMsgType) => {
     setMessage(reason);
   };
@@ -25,9 +25,11 @@ export default function useRejectMsg() {
     );
   };
 
-  const onRejectOrder = async (reason: RejectMsgType) => {
-    await OrderService.rejectOrder(order?.order_cd || "", reason);
+  // 주문 거절
+  const onRejectOrder = async () => {
+    await OrderService.rejectOrder(order?.order_cd || "", message);
+    onToggleIsShow();
   };
 
-  return { message, onSelectMessage, onToggleIsShow, onRejectOrder };
+  return { isShow, message, onSelectMessage, onToggleIsShow, onRejectOrder };
 }

@@ -19,4 +19,6 @@ const deliveryTimes = [
   "120분",
 ];
 
-export { rejectMsgs, deliveryTimes };
+const cancelReasons = ["고객요청", "가게사정", "배달불가", "재료소진"];
+
+export { rejectMsgs, deliveryTimes, cancelReasons };
