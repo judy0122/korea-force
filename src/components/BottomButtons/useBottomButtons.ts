@@ -6,11 +6,8 @@ export default function useBottomButtons() {
   const dispatch = useDispatch();
   const { subTabIndex } = useSelector((state: RootState) => state.tab);
   const { order } = useSelector((state: RootState) => state.order);
-  const {
-    rejectMsg: isShowRejectMsg,
-    deliveryTime: isShowDeliveryTime,
-    rejectComplete: isShowRejectComplete,
-  } = useSelector((state: RootState) => state.popup);
+  const { rejectMsg: isShowRejectMsg, deliveryTime: isShowDeliveryTime } =
+    useSelector((state: RootState) => state.popup);
 
   /**
    * 대기중
@@ -37,12 +34,12 @@ export default function useBottomButtons() {
 
   // 주문거절완료
   const onToggleIsShowRejectComplete = () => {
-    dispatch(
-      popupSlice.actions.onChangeIsShow({
-        name: "deliveryTime",
-        value: !isShowRejectComplete,
-      })
-    );
+    // dispatch(
+    //   popupSlice.actions.onChangeIsShow({
+    //     name: "simple",
+    //     value: !isShowRejectComplete,
+    //   })
+    // );
   };
 
   /**
@@ -56,7 +53,6 @@ export default function useBottomButtons() {
     subTabIndex,
     isShowRejectMsg,
     isShowDeliveryTime,
-    isShowRejectComplete,
     onToggleIsShowRejectMsg,
     onToggleIsShowDeliveryTime,
     onToggleIsShowRejectComplete,
