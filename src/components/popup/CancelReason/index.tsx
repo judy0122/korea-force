@@ -13,7 +13,7 @@ export default function CancelReasonPopup() {
   const handleCancel = async () => {
     if (reason !== "재료소진") {
       await onClickCancel();
-      onClickOpen("주문취소 처리 완료");
+      onClickOpen("주문취소 처리 완료", "주문이 취소되었습니다.");
     } else {
       onToggleIsShow();
       onToggleIsShowSoldout();

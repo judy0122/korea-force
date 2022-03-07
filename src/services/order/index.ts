@@ -94,4 +94,13 @@ export const OrderService = {
       return Promise.reject(error);
     }
   },
+  // 주문 완료 처리
+  async completeOrder(order_cd: string) {
+    try {
+      const url = "/v1/orders/complete";
+      await RestService.post(url, { order_cd });
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
 };

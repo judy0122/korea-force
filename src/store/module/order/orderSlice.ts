@@ -30,6 +30,7 @@ const orderSlice = createSlice({
       state.selectedOrder = action.payload;
     },
     onResetOrder(state) {
+      state.list = [];
       state.order = undefined as any;
       state.selectedOrder = -1;
     },

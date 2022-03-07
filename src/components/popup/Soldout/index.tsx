@@ -2,7 +2,23 @@ import CommonPopup from "../CommonPopup";
 import useSoldout from "./useSoldout";
 
 export default function SoldoutPopup() {
-  const { onToggleIsShow } = useSoldout();
+  const { selectedMenus, onToggleIsShow, onClickSoldout, onChangeMenus } =
+    useSoldout();
+
+  const dummys = [
+    {
+      name: "순살 소금구이",
+      menu_cd: "8234558",
+    },
+    {
+      name: "순살 소금구이1",
+      menu_cd: "8234553",
+    },
+    {
+      name: "순살 소금구이2",
+      menu_cd: "8234552",
+    },
+  ];
 
   return (
     <CommonPopup title="품절 처리" onClose={onToggleIsShow}>
@@ -12,12 +28,20 @@ export default function SoldoutPopup() {
 
         <div className="pop_chk gray_box">
           <ul>
-            <li>
-              <div className="chk_list type3">
-                <input type="checkbox" name="soldout_chk" id="soldout_chk1" />
-                <label htmlFor="soldout_chk1">순살 소금구이</label>
-              </div>
-            </li>
+            {dummys.map(({ name, menu_cd }, index) => (
+              <li key={index}>
+                <div className="chk_list type3">
+                  <input
+                    type="checkbox"
+                    name={name}
+                    id={menu_cd}
+                    checked={selectedMenus.includes(menu_cd)}
+                    onChange={onChangeMenus}
+                  />
+                  <label htmlFor={menu_cd}>{name}</label>
+                </div>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -25,7 +49,7 @@ export default function SoldoutPopup() {
           <a href="#;" className="btn m default close" onClick={onToggleIsShow}>
             취소
           </a>
-          <a href="#;" className="btn m gray">
+          <a href="#;" className="btn m gray" onClick={onClickSoldout}>
             품절처리
           </a>
 

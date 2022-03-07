@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "src/store";
 import popupSlice from "src/store/module/popup/popupSlice";
+import tabSlice from "src/store/module/tab/tabSlice";
 
 export default function useBottomButtons() {
   const dispatch = useDispatch();
-  const { subTabIndex } = useSelector((state: RootState) => state.tab);
+  const { subTabIndex, isNext } = useSelector((state: RootState) => state.tab);
   const { order } = useSelector((state: RootState) => state.order);
   const { rejectMsg: isShowRejectMsg, deliveryTime: isShowDeliveryTime } =
     useSelector((state: RootState) => state.popup);
@@ -45,10 +46,13 @@ export default function useBottomButtons() {
   /**
    * 처리중
    */
-  // 주문취소
-  const onCancelOrder = async () => {};
+  // 배달요청
+  const onRequestDelivery = async () => {
+    dispatch(tabSlice.actions.onChangeIsNext(true));
+  };
 
   return {
+    isNext,
     order,
     subTabIndex,
     isShowRejectMsg,
@@ -56,5 +60,6 @@ export default function useBottomButtons() {
     onToggleIsShowRejectMsg,
     onToggleIsShowDeliveryTime,
     onToggleIsShowRejectComplete,
+    onRequestDelivery,
   };
 }

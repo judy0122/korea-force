@@ -5,10 +5,13 @@ import { RootState } from "src/store";
 import { useSelector, useDispatch } from "react-redux";
 import { OrderStatusType } from "src/types/api";
 import orderSlice from "src/store/module/order/orderSlice";
+import { deliverys } from "../SubTab/values";
 
 export default function useTab() {
   const dispatch = useDispatch();
-  const { tabIndex, counts } = useSelector((state: RootState) => state.tab);
+  const { tabIndex, counts, subTabIndex } = useSelector(
+    (state: RootState) => state.tab
+  );
   const { pageIndex } = useSelector((state: RootState) => state.order);
 
   const getOrderCount = async (tabIndex: number) => {
@@ -46,11 +49,13 @@ export default function useTab() {
   };
 
   useEffect(() => {
-    if (tabIndex !== -1) {
-      getList(tabIndex, "standby", true);
+    const status = deliverys[subTabIndex]?.value;
+    dispatch(orderSlice.actions.onResetOrder());
+    if (tabIndex !== -1 && status) {
+      getList(tabIndex, status, true);
       getOrderCount(tabIndex);
     }
-  }, [tabIndex]);
+  }, [tabIndex, subTabIndex]);
 
   return {
     counts,

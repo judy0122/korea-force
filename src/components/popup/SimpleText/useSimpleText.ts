@@ -6,13 +6,14 @@ export default function useSimpleText() {
   const dispatch = useDispatch();
   const { simple } = useSelector((state: RootState) => state.popup);
 
-  const onClickOpen = (title: string) => {
+  const onClickOpen = (title: string, contents: string) => {
     dispatch(
       popupSlice.actions.onChangeIsShow({
         name: "simple",
         value: {
           isShow: true,
           title,
+          contents,
         },
       })
     );
@@ -33,6 +34,7 @@ export default function useSimpleText() {
   return {
     isShow: simple.isShow,
     title: simple.title,
+    contents: simple.contents,
     onClickOpen,
     onClickClose,
   };

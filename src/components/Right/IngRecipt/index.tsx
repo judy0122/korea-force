@@ -1,16 +1,19 @@
+import numeral from "numeral";
 import { OrderType } from "src/types/order";
 import { OrderMenu } from "../OrderMenu";
 import { RequestMessage } from "../RequestMessage";
+import useIngRecipt from "./useIngRecipt";
 
 export interface IWaitingReciptProps {
   order: OrderType;
 }
 
 export function IngRecipt({ order }: IWaitingReciptProps) {
+  const { onClickComplete } = useIngRecipt();
   return (
     <>
       <div className="in_content">
-        <strong className="top_txt">처리중 0002</strong>
+        <strong className="top_txt">처리중 {order.order_cd}</strong>
 
         <ul className="top_ico">
           <li>
@@ -21,11 +24,17 @@ export function IngRecipt({ order }: IWaitingReciptProps) {
           </li>
         </ul>
 
-        <p className="order_txt">메뉴 2개 · 15,000원 (결제완료)</p>
+        <p className="order_txt">
+          메뉴 {order.order_menus.length}개 ·{" "}
+          {numeral(order.order_pay_amount).format("0,0")}원 ({order.pay_method})
+        </p>
         {/* 주문메뉴 */}
         <OrderMenu order={order}>
           <div className="btn_area mt_10">
-            <button className="layer_ordercomplete openlayer btn s default w_100">
+            <button
+              className="layer_ordercomplete openlayer btn s default w_100"
+              onClick={onClickComplete}
+            >
               완료
             </button>
           </div>

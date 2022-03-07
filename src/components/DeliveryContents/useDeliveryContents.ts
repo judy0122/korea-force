@@ -23,7 +23,6 @@ export default function useDeliveryContents() {
   };
 
   useEffect(() => {
-    console.log(selectedOrder);
     if (selectedOrder > -1) {
       getOrder();
     }

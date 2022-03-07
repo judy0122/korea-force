@@ -6,7 +6,7 @@ const initialState = {
   deliveryTime: false,
   cancelReason: false,
   soldout: false,
-  simple: { isShow: false, title: "" },
+  simple: { isShow: false, title: "", contents: "" },
 };
 
 const popup = createSlice({

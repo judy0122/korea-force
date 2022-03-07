@@ -1,22 +1,26 @@
 import useRight from "./useRight";
 import { WaitingRecipt } from "./WaitingRecipt";
 import { IngRecipt } from "./IngRecipt";
+import { RiderRecipt } from "./RiderRecipt";
 
 export default function Right() {
-  const { order, deliverytabIndex } = useRight();
+  const { order, subTabIndex, isNext } = useRight();
 
   return (
     <div className="right_info">
       {order ? (
         <>
-          {deliverytabIndex === 0 && (
+          {subTabIndex === 0 && (
             // 대기중
             <WaitingRecipt order={order} />
           )}
-          {deliverytabIndex === 1 && (
+          {subTabIndex === 1 &&
             // 대기중
-            <IngRecipt order={order} />
-          )}
+            (isNext ? (
+              <RiderRecipt order={order} />
+            ) : (
+              <IngRecipt order={order} />
+            ))}
         </>
       ) : (
         <div className="in_content">

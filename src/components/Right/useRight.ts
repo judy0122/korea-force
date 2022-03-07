@@ -6,7 +6,7 @@ import { OptionType, OrderMenusType, OrderType } from "src/types/order";
 
 export default function useRight() {
   const [deliveryType, setDeliveryType] = useState<DeliveryType>("agent");
-  const tabState = useSelector((state: RootState) => state.tab);
+  const { subTabIndex, isNext } = useSelector((state: RootState) => state.tab);
   const { order }: { order: OrderType | null } = useSelector(
     (state: RootState) => state.order
   );
@@ -52,12 +52,13 @@ export default function useRight() {
   };
 
   return {
+    deliveryType,
+    subTabIndex,
+    order,
+    isNext,
     getMenuAmount,
     getMenuCount,
     getMenuAllAmount,
-    deliveryType,
     onChangeDeliveryType,
-    deliverytabIndex: tabState.subTabIndex,
-    order,
   };
 }

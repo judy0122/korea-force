@@ -19,7 +19,7 @@ export default function DeliveryTab() {
             key={index}
             className={subTabIndex === index ? "btn ms blue" : "btn ms default"}
           >
-            <button onClick={() => onChangeDeliveryTabIndex(index, value)}>
+            <button onClick={() => onChangeDeliveryTabIndex(index)}>
               {name} <span>{counts[index]}</span>
             </button>
           </li>

@@ -73,13 +73,7 @@ export function OrderMenu({ order, children }: IOrderMenuProps) {
                 {getMenuCount(order.order_menus || [])}
               </td>
               <td className="txt_r">
-                {numeral(
-                  getMenuAllAmount(
-                    order.order_menus || [],
-                    order?.order_tip_amount || 0
-                  )
-                ).format("0,0")}
-                원
+                {numeral(order.order_pay_amount).format("0,0")}원
               </td>
             </tr>
           </tfoot>

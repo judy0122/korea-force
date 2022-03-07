@@ -4,6 +4,7 @@ import { OrderService } from "src/services";
 import { RootState } from "src/store";
 import orderSlice from "src/store/module/order/orderSlice";
 import popupSlice from "src/store/module/popup/popupSlice";
+import tabSlice from "src/store/module/tab/tabSlice";
 import { DeliveryTimeType } from "src/types/order";
 
 export default function useDeliveryTime() {
@@ -19,9 +20,9 @@ export default function useDeliveryTime() {
     setTime(time);
   };
 
-  // 목록 조회
-  const getList = async () => {
-    const data = await OrderService.getList(0, pageIndex, "standby");
+  const getIngList = async () => {
+    const data = await OrderService.getList(0, pageIndex, "ing");
+    dispatch(tabSlice.actions.onChangeSubTabIndex(1));
     dispatch(orderSlice.actions.onChangeList(data || []));
     dispatch(orderSlice.actions.onChangeSelectedOrder(0));
   };
@@ -29,14 +30,14 @@ export default function useDeliveryTime() {
   // 주문 접수
   const onAcceptOrder = async () => {
     await OrderService.acceptOrder(order?.order_cd || "", time);
-    getList();
+    getIngList();
     onToggleIsShow();
   };
 
   const onToggleIsShow = () => {
     dispatch(
       popupSlice.actions.onChangeIsShow({
-        name: "rejectMsg",
+        name: "deliveryTime",
         value: !isShow,
       })
     );
