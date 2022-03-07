@@ -29,6 +29,7 @@ export default function CancelReasonPopup() {
           <ul>
             {cancelReasons.map((item, index) => (
               <li
+                key={index}
                 className={reason === item ? "on" : ""}
                 onClick={() => onSelectReason(item)}
               >

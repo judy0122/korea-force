@@ -9,7 +9,7 @@ export interface IOrderMenuProps {
 }
 
 export function OrderMenu({ order, children }: IOrderMenuProps) {
-  const { getMenuAmount, getMenuCount, getMenuAllAmount } = useRight();
+  const { getMenuAmount, getMenuCount } = useRight();
 
   return (
     <dl className="tit_con_style first">

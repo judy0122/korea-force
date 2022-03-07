@@ -1,24 +1,15 @@
+import { OrderMenusType } from "src/types/order";
 import CommonPopup from "../CommonPopup";
 import useSoldout from "./useSoldout";
 
 export default function SoldoutPopup() {
-  const { selectedMenus, onToggleIsShow, onClickSoldout, onChangeMenus } =
-    useSoldout();
-
-  const dummys = [
-    {
-      name: "순살 소금구이",
-      menu_cd: "8234558",
-    },
-    {
-      name: "순살 소금구이1",
-      menu_cd: "8234553",
-    },
-    {
-      name: "순살 소금구이2",
-      menu_cd: "8234552",
-    },
-  ];
+  const {
+    menus,
+    selectedMenus,
+    onToggleIsShow,
+    onClickSoldout,
+    onChangeMenus,
+  } = useSoldout();
 
   return (
     <CommonPopup title="품절 처리" onClose={onToggleIsShow}>
@@ -28,17 +19,17 @@ export default function SoldoutPopup() {
 
         <div className="pop_chk gray_box">
           <ul>
-            {dummys.map(({ name, menu_cd }, index) => (
+            {menus.map(({ menu_name, menu_cd }: OrderMenusType, index) => (
               <li key={index}>
                 <div className="chk_list type3">
                   <input
                     type="checkbox"
-                    name={name}
+                    name={menu_name}
                     id={menu_cd}
                     checked={selectedMenus.includes(menu_cd)}
                     onChange={onChangeMenus}
                   />
-                  <label htmlFor={menu_cd}>{name}</label>
+                  <label htmlFor={menu_cd}>{menu_name}</label>
                 </div>
               </li>
             ))}

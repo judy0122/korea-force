@@ -66,14 +66,20 @@ export default function DeliveryContents() {
                   <tr
                     key={index}
                     onClick={() => onChangeSelectedOrder(index)}
-                    className={selectedOrder === index ? "active" : ""}
+                    className={
+                      selectedOrder === index
+                        ? "active"
+                        : order_status === "거부"
+                        ? "ing"
+                        : ""
+                    }
                   >
-                    <td>{order_cd}</td>
+                    <td style={{ wordBreak: "break-all" }}>{order_cd}</td>
                     <td>
                       <span className="ico style1">배민</span>
                     </td>
                     <td>{order_delivgb}</td>
-                    <td>{order_menus.map(({ menu_name }) => menu_name)}</td>
+                    <td>{order_menus.length}</td>
                     <td>{pay_method}</td>
                     <td>{numeral(order_amount).format("0,0")}</td>
                     <td>

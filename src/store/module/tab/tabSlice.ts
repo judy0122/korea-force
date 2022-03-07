@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TabOrderType } from "src/types/order";
+import { TabOrderType, DeliveryType } from "src/types/order";
 
 const initialState: {
   tabIndex: number;
@@ -7,12 +7,14 @@ const initialState: {
   subTabIndex: number;
   counts: number[];
   isNext: boolean;
+  deliveryType: DeliveryType;
 } = {
   tabIndex: 1,
   tabType: "DELIVERY",
   subTabIndex: 0,
   counts: [0, 0, 0, 0],
-  isNext: true,
+  isNext: false,
+  deliveryType: "company",
 };
 
 const tabSlice = createSlice({
@@ -31,6 +33,9 @@ const tabSlice = createSlice({
     },
     onChangeIsNext(state, action) {
       state.isNext = action.payload;
+    },
+    onChangeDeliveryType(state, action) {
+      state.deliveryType = action.payload;
     },
     resetState: () => initialState,
   },

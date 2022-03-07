@@ -1970,6 +1970,7 @@
         line-height: 30px;
         font-family: "PB", sans-serif;
         padding-right: 70px;
+        word-break: break-all;
       }
     }
   }
@@ -2747,6 +2748,7 @@ hr.bar {
   overflow-y: auto;
   height: 373px;
   position: relative;
+  background: #fff;
 }
 
 .order_info .tb_type1 {

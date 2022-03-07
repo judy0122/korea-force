@@ -20,17 +20,17 @@ export default function useRight() {
     let price = 0;
     optionList.map(({ options }: OptionType) =>
       options.map(({ option_amount }) => {
-        price += option_amount;
+        price += Number(option_amount);
       })
     );
-    return price + menuPriceAmount;
+    return price + Number(menuPriceAmount);
   };
 
   // 메뉴 전수량 구하기
   const getMenuCount = (menus: OrderMenusType[]) => {
     let counts = 0;
     menus.map(({ count }) => {
-      counts += count;
+      counts += Number(count);
     });
     return counts;
   };

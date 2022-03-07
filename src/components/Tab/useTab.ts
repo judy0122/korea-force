@@ -49,8 +49,9 @@ export default function useTab() {
   };
 
   useEffect(() => {
-    const status = deliverys[subTabIndex]?.value;
     dispatch(orderSlice.actions.onResetOrder());
+    const status = deliverys[subTabIndex]?.value;
+
     if (tabIndex !== -1 && status) {
       getList(tabIndex, status, true);
       getOrderCount(tabIndex);

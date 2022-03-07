@@ -1,5 +1,4 @@
 import { OrderStatusType } from "./api";
-import { DeliveryType } from "./common";
 
 export type DeliveryMethodsType = { title: string; value: DeliveryType };
 
@@ -91,7 +90,7 @@ export type OrderType = {
 };
 
 export type OrderMenusType = {
-  menu_cd: number;
+  menu_cd: string;
   menu_name: string;
   menu_price_cd: number;
   menu_price_name: string;
@@ -136,3 +135,6 @@ export type TabType = { name: string; value: number; type: TabOrderType };
 export type TabOrderType = "DELIVERY" | "TAKEOUT" | "TABLE" | "WHOLE" | "SALES";
 
 export type DeliveryTabType = { name: string; value: OrderStatusType | null };
+
+export type DeliveryTypes = { name: string; value: DeliveryType };
+export type DeliveryType = "company" | "self";

@@ -13,7 +13,9 @@ export function IngRecipt({ order }: IWaitingReciptProps) {
   return (
     <>
       <div className="in_content">
-        <strong className="top_txt">처리중 {order.order_cd}</strong>
+        <strong className="top_txt">
+          {order.order_status} {order.order_cd}
+        </strong>
 
         <ul className="top_ico">
           <li>

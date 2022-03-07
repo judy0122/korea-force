@@ -3,11 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { OrderService } from "src/services";
 import { RootState } from "src/store";
 import popupSlice from "src/store/module/popup/popupSlice";
+import tabSlice from "src/store/module/tab/tabSlice";
 import useSimpleText from "../SimpleText/useSimpleText";
 
 export default function useSoldout() {
   const dispatch = useDispatch();
   const { soldout: isShow } = useSelector((state: RootState) => state.popup);
+  const { order } = useSelector((state: RootState) => state.order);
+  const { subTabIndex } = useSelector((state: RootState) => state.tab);
   const [selectedMenus, setSelectedMenus] = useState<string[]>([]);
   const { onClickOpen } = useSimpleText();
 
@@ -41,9 +44,12 @@ export default function useSoldout() {
       "메뉴 품절 처리 완료",
       "품절 처리가 성공적으로 반영되었습니다."
     );
+    await OrderService.rejectOrder(order?.order_cd || "", "재료소진");
+    dispatch(tabSlice.actions.onChangeSubTabIndex(3));
   };
 
   return {
+    menus: order?.order_menus || [],
     isShow,
     selectedMenus,
     onToggleIsShow,

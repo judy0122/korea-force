@@ -8,9 +8,11 @@ export default function BottomButtons(props: IBottomButtonsProps) {
     order,
     subTabIndex,
     isNext,
+    deliveryType,
     onToggleIsShowRejectMsg,
     onToggleIsShowDeliveryTime,
     onRequestDelivery,
+    onClickDelivery,
   } = useBottomButtons();
   const { onToggleIsShow } = useCancelPopup();
 
@@ -45,14 +47,15 @@ export default function BottomButtons(props: IBottomButtonsProps) {
             disabled={!order}
             className="btn ms blue"
             style={{ width: "255px" }}
+            onClick={onClickDelivery}
           >
-            라이더 호출
+            {deliveryType === "company" ? "라이더 호출" : "배달"}
           </button>
         </>
       ) : (
         <>
           <button
-            // disabled={!order}
+            disabled={!order}
             className="btn ms default line2"
             onClick={onToggleIsShow}
           >
@@ -75,6 +78,9 @@ export default function BottomButtons(props: IBottomButtonsProps) {
           </button>
         </>
       );
+
+    case 3:
+      return <></>;
 
     default:
       return <div>ad</div>;

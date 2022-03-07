@@ -1,6 +1,6 @@
+import orderSlice from "src/store/module/order/orderSlice";
 import { RootState } from "src/store";
 import { useDispatch, useSelector } from "react-redux";
-import orderSlice from "src/store/module/order/orderSlice";
 import { OrderService } from "src/services";
 import { useEffect } from "react";
 
@@ -18,8 +18,10 @@ export default function useDeliveryContents() {
   // 주문 상세 가져오기
   const getOrder = async () => {
     const orderCd: string = list[selectedOrder]?.order_cd;
-    const data = await OrderService.getOrder(orderCd);
-    dispatch(orderSlice.actions.onChangeOrder(data));
+    if (orderCd) {
+      const data = await OrderService.getOrder(orderCd);
+      dispatch(orderSlice.actions.onChangeOrder(data));
+    }
   };
 
   useEffect(() => {

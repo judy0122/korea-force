@@ -88,7 +88,7 @@ export const OrderService = {
   // 품절 처리
   async soldoutMenu(list: { menu_cd: string }[]) {
     try {
-      const url = "​/v1​/orders​/soldout";
+      const url = "/v1/orders/soldout";
       await RestService.post(url, list);
     } catch (error) {
       return Promise.reject(error);
