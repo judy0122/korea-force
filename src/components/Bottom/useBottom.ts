@@ -1,16 +1,36 @@
 import orderSlice from "src/store/module/order/orderSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "src/store";
+import popupSlice from "src/store/module/popup/popupSlice";
 
 export default function useBottom() {
   const dispatch = useDispatch();
-  const { list, order } = useSelector((state: RootState) => state.order);
+  const { list, order, selectedOrder } = useSelector(
+    (state: RootState) => state.order
+  );
   const { subTabIndex } = useSelector((state: RootState) => state.tab);
-  const { selectedOrder } = useSelector((state: RootState) => state.order);
+  const { print } = useSelector((state: RootState) => state.popup);
 
   const onChangeSelectedOrder = (index: number) => {
     dispatch(orderSlice.actions.onChangeSelectedOrder(index));
   };
 
-  return { order, list, subTabIndex, selectedOrder, onChangeSelectedOrder };
+  // 프린트 버튼 클릭시
+  const onClickPrint = () => {
+    dispatch(
+      popupSlice.actions.onChangeIsShow({
+        name: "print",
+        value: !print,
+      })
+    );
+  };
+
+  return {
+    order,
+    list,
+    subTabIndex,
+    selectedOrder,
+    onChangeSelectedOrder,
+    onClickPrint,
+  };
 }

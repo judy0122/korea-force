@@ -13,11 +13,6 @@ export default function useRejectMsg() {
   const { order } = useSelector((state: RootState) => state.order);
   const { subTabIndex } = useSelector((state: RootState) => state.tab);
 
-  // 주문 거절 사유 선택
-  const onSelectMessage = (reason: RejectMsgType) => {
-    setMessage(reason);
-  };
-
   const onToggleIsShow = () => {
     dispatch(
       popupSlice.actions.onChangeIsShow({
@@ -25,6 +20,11 @@ export default function useRejectMsg() {
         value: !isShow,
       })
     );
+  };
+
+  // 주문 거절 사유 선택
+  const onSelectMessage = (reason: RejectMsgType) => {
+    setMessage(reason);
   };
 
   // 주문 거절

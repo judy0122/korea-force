@@ -19,6 +19,8 @@ const deliveryTimes = [
   "120분",
 ];
 
+const prints = ["주방주문서 + 주문전표", "주방주문서", "주문전표", "영수증"];
+
 const cancelReasons = ["고객요청", "가게사정", "배달불가", "재료소진"];
 
-export { rejectMsgs, deliveryTimes, cancelReasons };
+export { rejectMsgs, deliveryTimes, cancelReasons, prints };

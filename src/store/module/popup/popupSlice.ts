@@ -6,6 +6,7 @@ const initialState = {
   deliveryTime: false,
   cancelReason: false,
   soldout: false,
+  print: false,
   simple: { isShow: false, title: "", contents: "" },
 };
 

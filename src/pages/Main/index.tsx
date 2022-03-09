@@ -11,6 +11,8 @@ import {
   useSimpleText,
   useSoldout,
 } from "src/components/popup";
+import PrintPopup from "src/components/popup/Print";
+import usePrint from "src/components/popup/Print/usePrint";
 
 export default function Main() {
   const { isShow: isShowCancel } = useCancelPopup();
@@ -18,6 +20,7 @@ export default function Main() {
   const { isShow: isShowRejectMsg } = useRejectMsg();
   const { isShow: isShowSimpleText } = useSimpleText();
   const { isShow: isShowSoldout } = useSoldout();
+  const { isShow: isShowPrint } = usePrint();
 
   return (
     <>
@@ -35,6 +38,7 @@ export default function Main() {
       {isShowDeliveryTime && <DeliveryTimePopup />}
       {isShowCancel && <CancelReasonPopup />}
       {isShowSoldout && <SoldoutPopup />}
+      {isShowPrint && <PrintPopup />}
     </>
   );
 }

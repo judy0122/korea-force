@@ -2,8 +2,14 @@ import BottomButtons from "../BottomButtons";
 import useBottom from "./useBottom";
 
 export default function Bottom() {
-  const { list, order, selectedOrder, subTabIndex, onChangeSelectedOrder } =
-    useBottom();
+  const {
+    list,
+    order,
+    selectedOrder,
+    subTabIndex,
+    onChangeSelectedOrder,
+    onClickPrint,
+  } = useBottom();
   return (
     <>
       <div className="bottom_controll">
@@ -36,7 +42,7 @@ export default function Bottom() {
           <BottomButtons />
           <div className="arr_controll">
             {subTabIndex === 0 && (
-              <button className="btn ms default">
+              <button className="btn ms default" onClick={onClickPrint}>
                 <span className="print">프린트</span>
               </button>
             )}
