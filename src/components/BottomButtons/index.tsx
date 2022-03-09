@@ -6,6 +6,7 @@ export interface IBottomButtonsProps {}
 export default function BottomButtons(props: IBottomButtonsProps) {
   const {
     order,
+    tabIndex,
     subTabIndex,
     isNext,
     deliveryType,
@@ -16,6 +17,9 @@ export default function BottomButtons(props: IBottomButtonsProps) {
   } = useBottomButtons();
   const { onToggleIsShow } = useCancelPopup();
 
+  if (tabIndex === -1) {
+    return <></>;
+  }
   switch (subTabIndex) {
     case 0:
       return (
@@ -91,6 +95,6 @@ export default function BottomButtons(props: IBottomButtonsProps) {
       return <></>;
 
     default:
-      return <div>ad</div>;
+      return <></>;
   }
 }

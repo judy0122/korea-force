@@ -1896,8 +1896,11 @@
     .day_chk {
       font-size: 0;
       display: inline-block;
-
-      input {
+      overflow: hidden;
+      .day_controll {
+        display: inline-block;
+      }
+      .react-datepicker-wrapper {
         width: 118px;
         background: url(../assets/bg_month.png) 0 0 no-repeat;
         background-size: 100% 100%;
@@ -1905,7 +1908,11 @@
         line-height: 46px;
         font-size: 15px;
         padding-left: 10px;
+        position: relative;
 
+        input {
+          width: 100%;
+        }
         &::placeholder {
           font-size: 15px;
         }

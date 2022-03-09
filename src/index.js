@@ -6,6 +6,7 @@ import { persistor, store } from "./store";
 import { PersistGate } from "redux-persist/integration/react";
 import { hydrate, render } from "react-dom";
 import { Provider } from "react-redux";
+import "react-datepicker/dist/react-datepicker.css";
 
 const renderApp = () => {
   return (

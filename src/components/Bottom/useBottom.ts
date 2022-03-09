@@ -8,7 +8,9 @@ export default function useBottom() {
   const { list, order, selectedOrder } = useSelector(
     (state: RootState) => state.order
   );
-  const { subTabIndex } = useSelector((state: RootState) => state.tab);
+  const { subTabIndex, tabIndex } = useSelector(
+    (state: RootState) => state.tab
+  );
   const { print } = useSelector((state: RootState) => state.popup);
 
   const onChangeSelectedOrder = (index: number) => {
@@ -28,6 +30,7 @@ export default function useBottom() {
   return {
     order,
     list,
+    tabIndex,
     subTabIndex,
     selectedOrder,
     onChangeSelectedOrder,

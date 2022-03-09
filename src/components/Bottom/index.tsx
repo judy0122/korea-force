@@ -7,6 +7,7 @@ export default function Bottom() {
     order,
     selectedOrder,
     subTabIndex,
+    tabIndex,
     onChangeSelectedOrder,
     onClickPrint,
   } = useBottom();
@@ -41,7 +42,7 @@ export default function Bottom() {
         <div className="right">
           <BottomButtons />
           <div className="arr_controll">
-            {subTabIndex === 0 && (
+            {subTabIndex === 0 && tabIndex !== -1 && (
               <button className="btn ms default" onClick={onClickPrint}>
                 <span className="print">프린트</span>
               </button>

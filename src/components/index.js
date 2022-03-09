@@ -5,7 +5,8 @@ import Tab from "./Tab";
 import Right from "./Right";
 import Left from "./Left";
 import SubTab from "./SubTab";
-import DeliveryContents from "./DeliveryContents";
+import DeliveryContents from "./Contents/DeliveryContents";
+import SaleContents from "./Contents/SaleContents";
 import Bottom from "./Bottom";
 
 export {
@@ -18,4 +19,5 @@ export {
   Right,
   Left,
   Bottom,
+  SaleContents,
 };

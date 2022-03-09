@@ -4,9 +4,10 @@ import IngRecipt from "./IngRecipt";
 import CompleteRecipt from "./CompleteRecipt";
 import RiderRecipt from "./RiderRecipt";
 import DeliveryRecipt from "./DeliveryRecipt";
+import SaleRecipt from "./SaleRecipt";
 
 export default function Right() {
-  const { order, subTabIndex, isNext } = useRight();
+  const { order, subTabIndex, tabIndex, isNext } = useRight();
 
   return (
     <div className="right_info">
@@ -14,8 +15,7 @@ export default function Right() {
         <>
           {subTabIndex === 0 && (
             // 대기중
-            // <WaitingRecipt order={order} />
-            <DeliveryRecipt order={order} />
+            <WaitingRecipt order={order} />
           )}
           {subTabIndex === 1 &&
             // 대기중
@@ -27,6 +27,8 @@ export default function Right() {
           {subTabIndex === 2 && <DeliveryRecipt order={order} />}
           {subTabIndex === 3 && <CompleteRecipt order={order} />}
         </>
+      ) : tabIndex === -1 ? (
+        <SaleRecipt />
       ) : (
         <div className="in_content">
           <p className="empty">주문 정보가 없습니다.</p>

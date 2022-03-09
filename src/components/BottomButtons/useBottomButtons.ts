@@ -7,7 +7,7 @@ import { OrderCallRider, OrderCallRiderCompany } from "src/types/api";
 
 export default function useBottomButtons() {
   const dispatch = useDispatch();
-  const { subTabIndex, isNext, deliveryType } = useSelector(
+  const { subTabIndex, isNext, deliveryType, tabIndex } = useSelector(
     (state: RootState) => state.tab
   );
   const { order } = useSelector((state: RootState) => state.order);
@@ -95,6 +95,7 @@ export default function useBottomButtons() {
     isShowRejectMsg,
     isShowDeliveryTime,
     deliveryType,
+    tabIndex,
     onToggleIsShowRejectMsg,
     onToggleIsShowDeliveryTime,
     onToggleIsShowRejectComplete,
