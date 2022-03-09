@@ -59,7 +59,7 @@ const stateContext = createContext<any | undefined>(undefined);
 const dispatchContext = createContext<GlobalDispatch | undefined>(undefined);
 
 // Provider
-export function GlobalContextProvider({ children }: Provider) {
+export default function GlobalContextProvider({ children }: Provider) {
   const [state, dispatch] = useReducer(globalReducer, initialState);
   return (
     <dispatchContext.Provider value={dispatch}>
@@ -69,7 +69,7 @@ export function GlobalContextProvider({ children }: Provider) {
 }
 
 // useState
-export function useGlobalState() {
+export default function useGlobalState() {
   const state: InitialStateTypes = useContext(stateContext);
   if (!state) {
     throw new Error("useGlobalState not found");
@@ -78,7 +78,7 @@ export function useGlobalState() {
 }
 
 // useDispatch
-export function useGlobalDispatch() {
+export default function useGlobalDispatch() {
   const dispatch = useContext(dispatchContext);
   if (!dispatch) {
     throw new Error("useGlobalDispatch not found");

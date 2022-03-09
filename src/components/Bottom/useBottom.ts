@@ -1,7 +1,7 @@
-import orderSlice from "src/store/module/order/orderSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "src/store";
 import popupSlice from "src/store/module/popup/popupSlice";
+import orderSlice from "src/store/module/order/orderSlice";
 
 export default function useBottom() {
   const dispatch = useDispatch();

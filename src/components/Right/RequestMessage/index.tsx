@@ -4,7 +4,7 @@ export interface IRequestMessageProps {
   additionalMessage?: string;
 }
 
-export function RequestMessage({
+export default function RequestMessage({
   requestMessage,
   deliveryMessage,
   additionalMessage,

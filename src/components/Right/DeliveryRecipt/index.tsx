@@ -1,22 +1,23 @@
+import { OrderType } from "src/types/order";
 import Address from "../Address";
 import DeliveryInfo from "../DeliveryInfo";
 import OrderMenu from "../OrderMenu";
 import RequestMessage from "../RequestMessage";
 import Tel from "../Tel";
-import { OrderType } from "src/types/order";
 import TopIcon from "../TopIcon";
 import TopInfo from "../TopInfo";
+import useDeliveryRecipt from "./useDeliveryRecipt";
 
-export interface ICompleteReciptProps {
+export interface IDeliveryReciptProps {
   order: OrderType;
 }
 
-export default function CompleteRecipt({ order }: ICompleteReciptProps) {
+export default function DeliveryRecipt({ order }: IDeliveryReciptProps) {
+  const { onComplete } = useDeliveryRecipt();
+
   return (
     <div className="in_content">
-      <strong className="top_txt">
-        {order.order_status} {order.order_cd}
-      </strong>
+      <strong className="top_txt">배송요청</strong>
 
       {/* 배달 채널 아이콘 */}
       <TopIcon />
@@ -27,14 +28,39 @@ export default function CompleteRecipt({ order }: ICompleteReciptProps) {
       <hr className="bar" />
 
       <div className="btn_area pt_20">
-        <button className="btn s default w_100">결제 취소</button>
+        <button
+          className="layer_ordercomplete openlayer btn s default w_100"
+          onClick={onComplete}
+        >
+          완료
+        </button>
       </div>
 
-      {/* 배달업체 정보 */}
       <div className="delivery_location">
+        <ul className="lists">
+          <li className="on">
+            <span>
+              배차
+              <br />
+              대기
+            </span>
+          </li>
+          <li>
+            <span>배차</span>
+          </li>
+          <li>
+            <span>배달중</span>
+          </li>
+          <li>
+            <span>
+              배달
+              <br />
+              완료
+            </span>
+          </li>
+        </ul>
         <DeliveryInfo order={order} />
       </div>
-
       <hr className="bar" />
 
       {/* 주소 */}
@@ -58,7 +84,7 @@ export default function CompleteRecipt({ order }: ICompleteReciptProps) {
       />
 
       <hr className="bar" />
-      {/* 주문 메뉴 */}
+
       <OrderMenu order={order} />
     </div>
   );

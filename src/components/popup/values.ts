@@ -23,4 +23,11 @@ const prints = ["주방주문서 + 주문전표", "주방주문서", "주문전�
 
 const cancelReasons = ["고객요청", "가게사정", "배달불가", "재료소진"];
 
-export { rejectMsgs, deliveryTimes, cancelReasons, prints };
+const paymentMethods = [
+  { name: "현금결제", value: "cash" },
+  { name: "신용카드", value: "card" },
+  { name: "기타결제", value: "other" },
+  { name: "결제화면", value: "screen" },
+];
+
+export { rejectMsgs, deliveryTimes, cancelReasons, prints, paymentMethods };

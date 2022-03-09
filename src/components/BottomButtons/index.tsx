@@ -79,6 +79,14 @@ export default function BottomButtons(props: IBottomButtonsProps) {
         </>
       );
 
+    case 2:
+      return (
+        <>
+          <button className="btn ms red" style={{ width: "256px" }}>
+            배달취소
+          </button>
+        </>
+      );
     case 3:
       return <></>;
 

@@ -1,14 +1,15 @@
 import numeral from "numeral";
 import { OrderType } from "src/types/order";
-import { OrderMenu } from "../OrderMenu";
-import { RequestMessage } from "../RequestMessage";
+import OrderMenu from "../OrderMenu";
+import RequestMessage from "../RequestMessage";
+import TopIcon from "../TopIcon";
 import useIngRecipt from "./useIngRecipt";
 
 export interface IWaitingReciptProps {
   order: OrderType;
 }
 
-export function IngRecipt({ order }: IWaitingReciptProps) {
+export default function IngRecipt({ order }: IWaitingReciptProps) {
   const { onClickComplete } = useIngRecipt();
   return (
     <>
@@ -17,14 +18,8 @@ export function IngRecipt({ order }: IWaitingReciptProps) {
           {order.order_status} {order.order_cd}
         </strong>
 
-        <ul className="top_ico">
-          <li>
-            <span className="ico delivery">배달</span>
-          </li>
-          <li>
-            <span className="ico style1">배민</span>
-          </li>
-        </ul>
+        {/* 배달 채널 아이콘 */}
+        <TopIcon />
 
         <p className="order_txt">
           메뉴 {order.order_menus.length}개 ·{" "}

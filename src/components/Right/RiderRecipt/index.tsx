@@ -1,6 +1,6 @@
 import numeral from "numeral";
-import { DeliveryTypes, OrderType } from "src/types/order";
 import useRiderRecipt from "./useRiderRecipt";
+import { DeliveryTypes, OrderType } from "src/types/order";
 import { deliveryTimes, deliveryTypes } from "./values";
 
 export interface IRiderReciptProps {

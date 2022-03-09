@@ -1,11 +1,14 @@
 import Address from "../Address";
 import { OrderType } from "src/types/order";
+import TopInfo from "../TopInfo";
 
 export interface IWaitingCookingReciptProps {
   order: OrderType;
 }
 
-export function IngCookingRecipt({ order }: IWaitingCookingReciptProps) {
+export default function IngCookingRecipt({
+  order,
+}: IWaitingCookingReciptProps) {
   return (
     <div className="right_info">
       <div className="in_content">
@@ -17,34 +20,8 @@ export function IngCookingRecipt({ order }: IWaitingCookingReciptProps) {
           </li>
         </ul>
 
-        <div className="top_info">
-          <table>
-            <colgroup>
-              <col style={{ width: "35%" }} />
-              <col style={{ width: "auto" }} />
-            </colgroup>
-            <tbody>
-              <tr>
-                <td>후불(카드)결제</td>
-                <td className="red txt_r">24,000원</td>
-              </tr>
-              <tr>
-                <td colSpan={3}>
-                  <ul className="pt_20">
-                    <li>
-                      <span>주문일시</span>
-                      1/1 (월) 14:20
-                    </li>
-                    <li>
-                      <span>채널번호</span>
-                      ABCD12341
-                    </li>
-                  </ul>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        {/* 주문 정보 */}
+        <TopInfo order={order} />
 
         <hr className="bar" />
 

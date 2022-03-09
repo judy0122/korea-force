@@ -4,7 +4,7 @@ export interface ISalesProps {
   order: OrderType;
 }
 
-export function Sales({ order }: ISalesProps) {
+export default function Sales({ order }: ISalesProps) {
   return (
     <div className="in_content">
       <div className="top_txt_info">

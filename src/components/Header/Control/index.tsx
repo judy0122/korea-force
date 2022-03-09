@@ -2,7 +2,6 @@ import dayjs from "dayjs";
 import "dayjs/locale/ko";
 import { StatusType } from "src/types/common";
 import { statusTitle } from "../values";
-dayjs.locale("ko");
 
 interface ControlProps {
   isMain: boolean;

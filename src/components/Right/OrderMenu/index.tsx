@@ -8,7 +8,7 @@ export interface IOrderMenuProps {
   children?: React.ReactNode;
 }
 
-export function OrderMenu({ order, children }: IOrderMenuProps) {
+export default function OrderMenu({ order, children }: IOrderMenuProps) {
   const { getMenuAmount, getMenuCount } = useRight();
 
   return (

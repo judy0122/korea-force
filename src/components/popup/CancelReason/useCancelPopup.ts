@@ -26,7 +26,7 @@ export default function useCancelPopup() {
   };
 
   const onClickCancel = async () => {
-    // await OrderService.cancelOrder(order.order_cd, reason);
+    await OrderService.cancelOrder(order.order_cd, reason);
     onToggleIsShow();
   };
 

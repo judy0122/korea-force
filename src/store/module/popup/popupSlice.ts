@@ -7,7 +7,13 @@ const initialState = {
   cancelReason: false,
   soldout: false,
   print: false,
-  simple: { isShow: false, title: "", contents: "" },
+  collect: false,
+  simple: {
+    isShow: false,
+    title: "",
+    contents: "",
+    onClick: () => null,
+  },
 };
 
 const popup = createSlice({
