@@ -19,7 +19,7 @@ export default function ModifyMsgPopup({
 
   const { onToggleIsShow, onModifyMsg } = useModifyMsg();
 
-  const handleChangeNewMsg = (e: any) => {
+  const handleChangeNewMsg = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNewMsg(e.target.value);
   };
 

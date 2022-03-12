@@ -20,7 +20,7 @@ export default function useCollect() {
   };
 
   // 결제방법 변경
-  const onChangeMethod = (e: any) => {
+  const onChangeMethod = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMethod(e.target.id);
   };
 

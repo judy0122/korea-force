@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { ManageService, SettingService } from "src/services";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "src/store";
 import { StatusType } from "src/types/common";
+import settingSlice from "src/store/module/setting/settingSlice";
 
 export default function useHeader() {
+  const dispatch = useDispatch();
   const [ismain, setIsmain] = useState<boolean>(false);
   const [shopname, setShopName] = useState<string>("");
   const [status, setStatus] = useState<StatusType>("ING");
 
   const userState = useSelector((state: RootState) => state.user);
+  const { isSetting } = useSelector((state: RootState) => state.setting);
 
   useEffect(() => {
     if (userState.user) {
@@ -34,10 +37,17 @@ export default function useHeader() {
     }
   };
 
+  // 설정버튼 클릭
+  const onClickSetting = () => {
+    dispatch(settingSlice.actions.onChangeIsSetting(!isSetting));
+  };
+
   useEffect(() => {
-    getShopInfo();
-    getShopStatus();
+    if (userState.isLogged) {
+      getShopInfo();
+      getShopStatus();
+    }
   }, []);
 
-  return { shopname, ismain, status };
+  return { isSetting, shopname, ismain, status, onClickSetting };
 }

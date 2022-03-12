@@ -151,7 +151,6 @@
   width: 1024px;
   left: 50%;
   margin-left: -512px;
-  display: none;
 
   .top_controll {
     margin-bottom: 10px;
@@ -1681,7 +1680,12 @@
     }
 
     .rangeSlide {
+      width: 100%;
       margin-top: 20px;
+      input {
+        width: 100%;
+        margin-top: 10px;
+      }
     }
   }
 }
@@ -1690,7 +1694,10 @@
   height: 33px;
   padding-right: 65px;
   position: relative;
-
+  input {
+    width: 100%;
+    margin-top: 10px;
+  }
   .rangeslider {
     top: 10px;
   }

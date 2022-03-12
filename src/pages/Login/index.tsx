@@ -15,7 +15,7 @@ export default function Login() {
   } = useLogin();
 
   return (
-    <>
+    <div className="korea_wrap">
       <Header />
       <div className="login_wrap">
         <h2>
@@ -78,6 +78,6 @@ export default function Login() {
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
 }

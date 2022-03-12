@@ -42,3 +42,11 @@ export type OrderCallRiderCompany = {
 };
 
 export type OrderStatusType = "standby" | "ing" | "complete";
+
+//기기 수정
+export type ModifyPcType = {
+  device_name: string;
+  device_code: string;
+};
+//기기 삭제
+export type DeletePcType = { device_code: string };

@@ -1,6 +1,6 @@
 export interface ICommonPopupProps {
   title: string;
-  size?: "s" | "m";
+  size?: "s" | "m" | "lg";
   onClose: () => void;
   children: React.ReactNode;
 }

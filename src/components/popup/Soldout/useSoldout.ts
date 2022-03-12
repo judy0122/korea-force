@@ -10,7 +10,6 @@ export default function useSoldout() {
   const dispatch = useDispatch();
   const { soldout: isShow } = useSelector((state: RootState) => state.popup);
   const { order } = useSelector((state: RootState) => state.order);
-  const { subTabIndex } = useSelector((state: RootState) => state.tab);
   const [selectedMenus, setSelectedMenus] = useState<string[]>([]);
   const { onClickOpen } = useSimpleText();
 
@@ -23,7 +22,7 @@ export default function useSoldout() {
     );
   };
 
-  const onChangeMenus = (e: any) => {
+  const onChangeMenus = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (selectedMenus.includes(e.target.id)) {
       const newMenus = selectedMenus.filter((code) => code !== e.target.id);
       setSelectedMenus(newMenus);

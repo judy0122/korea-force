@@ -19,7 +19,11 @@ type UserTypes = {
 };
 
 type Action =
-  | { type: "CHANGE"; name: StateName; value: any }
+  | {
+      type: "CHANGE";
+      name: StateName;
+      value: React.ChangeEvent<HTMLInputElement>;
+    }
   | { type: "USER_LOGIN"; value: { user: UserTypes; isLogin: boolean } };
 
 type GlobalDispatch = Dispatch<Action>;

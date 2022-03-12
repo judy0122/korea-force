@@ -9,7 +9,8 @@ export default function useSimpleText() {
   const onClickOpen = (
     title: string,
     contents: string,
-    onClick?: () => void
+    onClick?: () => void,
+    hasCancel?: boolean
   ) => {
     dispatch(
       popupSlice.actions.onChangeIsShow({
@@ -18,6 +19,7 @@ export default function useSimpleText() {
           isShow: true,
           title,
           contents,
+          hasCancel,
           onClick: onClick && onClick,
         },
       })
@@ -25,13 +27,13 @@ export default function useSimpleText() {
   };
 
   const onClickClose = () => {
-    simple.onClick();
     dispatch(
       popupSlice.actions.onChangeIsShow({
         name: "simple",
         value: {
           isShow: false,
           title: "",
+          hasCancel: false,
           onClick: () => null,
         },
       })
@@ -42,6 +44,7 @@ export default function useSimpleText() {
     isShow: simple.isShow,
     title: simple.title,
     contents: simple.contents,
+    hasCancel: simple.hasCancel,
     onClickOpen,
     onClickClose,
   };

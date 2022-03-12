@@ -43,7 +43,7 @@ export default function useSubTab() {
   };
 
   // 매출조회 > 검색어 입력
-  const onChangeSearchValue = (e: any) => {
+  const onChangeSearchValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
   };
 

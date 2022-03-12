@@ -1,4 +1,9 @@
-import { OrderCallRider, OrderCallRiderCompany } from "src/types/api";
+import {
+  DeletePcType,
+  ModifyPcType,
+  OrderCallRider,
+  OrderCallRiderCompany,
+} from "src/types/api";
 import RestService from "../RestService";
 
 export const SettingService = {
@@ -36,6 +41,44 @@ export const SettingService = {
     try {
       const url = "/v1/orders/rider/call/new";
       await RestService.post(url, data);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
+  //로그인 기기조회
+  async getPcList() {
+    try {
+      const url = "/v1/settings/pclist";
+      const { data } = await RestService.get(url);
+      return data.data;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
+  //기기 수정
+  async modifyPc(data: ModifyPcType) {
+    try {
+      const url = "/v1/settings/pclist/mod";
+      await RestService.post(url, data);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
+  // 기기 삭제
+  async deletePc(data: DeletePcType) {
+    try {
+      const url = "/v1/settings/pclist/del";
+      await RestService.post(url, data);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
+  // 버전조회
+  async getVersion() {
+    try {
+      const url = "/v1/settings/versions";
+      const { data } = await RestService.get(url);
+      return data.data;
     } catch (error) {
       return Promise.reject(error);
     }

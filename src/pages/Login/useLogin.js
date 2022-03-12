@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthService } from "src/services/auth";
+import { UserService } from "src/services/user";
 import { STORAGE_TOKEN_KEY } from "src/configs";
 import { useDispatch } from "react-redux";
 import userSlice from "src/store/module/user/userSlice";
@@ -42,7 +42,7 @@ export default function useLogin() {
         alert("비밀번호를 입력해주세요.");
         return;
       }
-      const { data } = await AuthService.login(input);
+      const { data } = await UserService.login(input);
       const token = data.data.auth_token;
       localStorage.setItem(STORAGE_TOKEN_KEY, token);
       if (isSaveId && isSavePassword) {

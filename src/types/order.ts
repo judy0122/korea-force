@@ -130,6 +130,15 @@ export type DeliveryTimeType =
   | "90분"
   | "120분";
 
+export type CookingTimeType =
+  | "즉시"
+  | "10분"
+  | "20분"
+  | "30분"
+  | "40분"
+  | "50분"
+  | "60분";
+
 export type TabType = { name: string; value: number; type: TabOrderType };
 
 export type TabOrderType = "DELIVERY" | "TAKEOUT" | "TABLE" | "WHOLE" | "SALES";
