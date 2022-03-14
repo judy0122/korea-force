@@ -4,10 +4,12 @@ import SimpleTextPopup from "./SimpleText";
 import DeliveryTimePopup from "./DeliveryTime";
 import CookingTimePopup from "./CookingTime";
 import CancelReasonPopup from "./CancelReason";
+import CollectPopup from "./Collect";
 import SoldoutPopup from "./Soldout";
 import PcListPopup from "./PcList";
 import OriginPopup from "./Origin";
 import AlarmPopup from "./Alarm";
+import AddDeliveryPopup from "./AddDelivery";
 import useSoldout from "./Soldout/useSoldout";
 import useCancelPopup from "./CancelReason/useCancelPopup";
 import useDeliveryTime from "./DeliveryTime/useDeliveryTime";
@@ -30,4 +32,6 @@ export {
   useSoldout,
   PcListPopup,
   OriginPopup,
+  AddDeliveryPopup,
+  CollectPopup,
 };

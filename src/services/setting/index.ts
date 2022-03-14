@@ -1,4 +1,6 @@
 import {
+  AddDeliveryType,
+  DeleteDeliveryType,
   DeletePcType,
   ModifyPcType,
   OrderCallRider,
@@ -79,6 +81,44 @@ export const SettingService = {
       const url = "/v1/settings/versions";
       const { data } = await RestService.get(url);
       return data.data;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
+  //배달 대행사 조회(리스트)
+  async getDeliveryList() {
+    try {
+      const url = "/v1/settings/delivery";
+      const { data } = await RestService.get(url);
+      return data.data;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
+  //배달 대행사 조회(리스트)
+  async getDeliveryNewList() {
+    try {
+      const url = "/v1/settings/delivery/new";
+      const { data } = await RestService.get(url);
+      return data.data;
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
+  //배달 대행사 삭제
+  async deleteDelivery(data: DeleteDeliveryType) {
+    try {
+      const url = "/v1/settings/delivery/del";
+      await RestService.post(url, data);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
+  //배달대행사 추가
+  async addDelivery(data: AddDeliveryType) {
+    try {
+      const url = "/v1/settings/delivery/reg";
+      await RestService.post(url, data);
     } catch (error) {
       return Promise.reject(error);
     }

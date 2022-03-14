@@ -1,8 +1,15 @@
+import useDeliverySetting from "./useDeliverySetting";
+
 export default function DeliverySetting() {
+  const { list, onClickDelete, onClickAdd } = useDeliverySetting();
+
   return (
     <div>
       <div className="top_btn">
-        <button className="layer_delivery_add openlayer btn ms blue">
+        <button
+          className="layer_delivery_add openlayer btn ms blue"
+          onClick={onClickAdd}
+        >
           <span className="plus">배달대행사 추가</span>
         </button>
       </div>
@@ -20,46 +27,21 @@ export default function DeliverySetting() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>젠들리</td>
-              <td>1655</td>
-              <td>사용중</td>
-              <td>
-                <button className="btn s default">삭제</button>
-              </td>
-            </tr>
-            <tr>
-              <td>젠들리</td>
-              <td>1655</td>
-              <td>사용중</td>
-              <td>
-                <button className="btn s default">삭제</button>
-              </td>
-            </tr>
-            <tr>
-              <td>젠들리</td>
-              <td>1655</td>
-              <td>사용중</td>
-              <td>
-                <button className="btn s default">삭제</button>
-              </td>
-            </tr>
-            <tr>
-              <td>젠들리</td>
-              <td>1655</td>
-              <td>사용중</td>
-              <td>
-                <button className="btn s default">삭제</button>
-              </td>
-            </tr>
-            <tr>
-              <td>젠들리</td>
-              <td>1655</td>
-              <td>사용중</td>
-              <td>
-                <button className="btn s default">삭제</button>
-              </td>
-            </tr>
+            {list.map((item, index) => (
+              <tr key={index}>
+                <td>{item.delivery_comp_nm}</td>
+                <td>{item.delivery_shop_cd}</td>
+                <td>사용중</td>
+                <td>
+                  <button
+                    className="btn s default"
+                    onClick={() => onClickDelete(item)}
+                  >
+                    삭제
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

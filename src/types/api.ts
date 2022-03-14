@@ -50,3 +50,26 @@ export type ModifyPcType = {
 };
 //기기 삭제
 export type DeletePcType = { device_code: string };
+
+// 배달대행 목록
+export type DeliveryType = {
+  delivery_alias: string;
+  delivery_comp_cd: string;
+  delivery_comp_nm: string;
+  delivery_shop_cd: string;
+  shop_cd: number;
+};
+
+// 배달대행 삭제
+export type DeleteDeliveryType = {
+  shop_cd: number;
+  delivery_comp_cd: string;
+  delivery_shop_cd: string;
+};
+// 배달대행 추가
+export type AddDeliveryType = {
+  delivery_alias: string;
+  delivery_comp_cd: string;
+  delivery_shop_cd: string;
+  shop_cd: number;
+};

@@ -3,7 +3,7 @@ import CommonPopup from "../CommonPopup";
 import { paymentMethods } from "../values";
 import useCollect from "./useCollect";
 
-export function CollectPopup() {
+export default function CollectPopup() {
   const { amount, method, onToggleIsShow, onChangeMethod, onClickConfirm } =
     useCollect();
   return (

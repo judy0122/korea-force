@@ -3,6 +3,7 @@ import Setting from "../Setting";
 import useMain from "./useMain";
 import { Header, Right, Left, Bottom } from "src/components";
 import {
+  AddDeliveryPopup,
   AlarmPopup,
   CancelReasonPopup,
   CookingTimePopup,
@@ -12,8 +13,8 @@ import {
   RejectMsgPopup,
   SimpleTextPopup,
   SoldoutPopup,
+  CollectPopup,
 } from "src/components/popup";
-import { CollectPopup } from "src/components/popup/Collect";
 
 export default function Main() {
   const {
@@ -29,6 +30,7 @@ export default function Main() {
     isShowCookingTime,
     isShowOrigin,
     isShowAlarm,
+    isShowAddDelivery,
   } = useMain();
 
   return (
@@ -59,6 +61,7 @@ export default function Main() {
       {isShowPcList && <PcListPopup />}
       {isShowOrigin && <OriginPopup />}
       {isShowAlarm && <AlarmPopup />}
+      {isShowAddDelivery && <AddDeliveryPopup />}
     </>
   );
 }

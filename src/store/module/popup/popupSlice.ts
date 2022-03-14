@@ -12,6 +12,7 @@ const initialState = {
   pcList: false,
   origin: false,
   alarm: false,
+  addDelivery: false,
   simple: {
     isShow: false,
     title: "",

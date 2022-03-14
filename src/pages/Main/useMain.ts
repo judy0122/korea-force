@@ -15,6 +15,7 @@ export default function useMain() {
     pcList: isShowPcList,
     origin: isShowOrigin,
     alarm: isShowAlarm,
+    addDelivery: isShowAddDelivery,
   } = useSelector((state: RootState) => state.popup);
 
   return {
@@ -30,5 +31,6 @@ export default function useMain() {
     isShowCookingTime,
     isShowOrigin,
     isShowAlarm,
+    isShowAddDelivery,
   };
 }
